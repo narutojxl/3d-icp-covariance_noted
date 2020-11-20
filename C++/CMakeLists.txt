@@ -2,7 +2,11 @@ cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 
 project(icp_covariance)
 
-SET(CMAKE_BUILD_TYPE RelWithDebInfo)
+# SET(CMAKE_BUILD_TYPE RelWithDebInfo) //default
+
+SET(CMAKE_BUILD_TYPE Release)
+
+
 
 find_package(PCL 1.7.2 REQUIRED)
 

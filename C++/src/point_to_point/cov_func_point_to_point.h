@@ -18,7 +18,7 @@ void calculate_ICP_COV(pcl::PointCloud<pcl::PointXYZ>& data_pi, pcl::PointCloud<
     double Tz = transform(2,3);
     double roll  = atan2f(transform(2,1), transform(2,2));
     double pitch = asinf(-transform(2,0));
-    double yaw   = atan2f(transform(1,0), transform(0,0));
+    double yaw   = atan2f(transform(1,0), transform(0,0)); //旋转矩阵到欧拉角有待改进, 见笔记
 
     double x, y, z, a, b, c;
     x = Tx; y = Ty; z = Tz;

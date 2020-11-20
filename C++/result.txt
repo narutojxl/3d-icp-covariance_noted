@@ -1,0 +1,129 @@
+
+
+Status : Calculated SHOT descriptors and finding the correspondences
+May take a while...depends on the number of feature descriptors and its support size
+RANSAC based Transformation Matrix : 
+ 0.0647595 -0.0124207   0.997824   0.149793
+ 0.0622516   0.998025 0.00838302  -0.162114
+ -0.995957  0.0615732  0.0654049  0.0724907
+         0          0          0          1
+Now a window with the established correspondences between source and target keypoints pops up!
+Based on these correspondences, the source and target point clouds are moved closer and then ICP works on them
+If the established correspondences are not good, then the estimated transformation is not reliable!
+It means that there is high probability that ICP may converge to a local minima !!!
+Started Point to Plane ICP
+Final transformation (feature matching * ICP alone)  :
+-0.000994481     -0.07316      0.99732     0.159281
+    0.053009     0.995914    0.0731097    -0.150229
+   -0.998594    0.0529396   0.00288774    0.0129666
+           0            0            0            1
+*************
+!!! Here we estimate the ICP's covariance of transformation between closely moved point clouds !!! 
+*************
+
+Printing out [x, y, z, a, b, c] =  0.0606377    0.00807842    0.00567405    -0.00858866    0.0659085    -0.0613611
+
+**************
+ Successfully Computed d2J_dX2 
+**************
+
+
+Number of Correspondences used for ICP's covariance estimation = 200
+
+
+********************** 
+
+ICP_COV = 
+ 1.84088e-07  1.86461e-08 -3.79041e-09 -4.94466e-08 -5.02312e-08  2.90634e-08
+ 1.86461e-08  2.44176e-07  6.73853e-10 -1.54781e-07    -6.94e-09  4.86888e-08
+-3.79041e-09  6.73853e-10  2.28046e-07 -2.48491e-08  2.03988e-07  3.66912e-08
+-4.94466e-08 -1.54781e-07 -2.48491e-08  6.11478e-07  -2.6249e-07  2.01516e-07
+-5.02312e-08    -6.94e-09  2.03988e-07  -2.6249e-07  1.27432e-06 -5.65678e-07
+ 2.90634e-08  4.86888e-08  3.66912e-08  2.01516e-07 -5.65678e-07  9.09633e-07
+*******************
+
+
+
+Successfully Computed the ICP's Covariance !!!
+
+
+Computational Time for ICP's covariance computation alone (in sec) = 0.006469
+
+ICP_COV Trace = 
+
+3.45174e-06
+
+
+
+^C
+jxl@dell:~/third_softwares/3d-icp-covariance/C++/build$ 
+
+
+
+
+
+
+
+Status : Calculated SHOT descriptors and finding the correspondences
+May take a while...depends on the feature descriptor and its support size
+RANSAC based Transformation Matrix : 
+ 0.0647595 -0.0124207   0.997824   0.149793
+ 0.0622516   0.998025 0.00838302  -0.162114
+ -0.995957  0.0615732  0.0654049  0.0724907
+         0          0          0          1
+Now a window with the established correspondences between source and target keypoints pops up!
+Based on these correspondences, the source and target point clouds are moved closer and then ICP works on them
+If the established correspondences are not good, then the estimated transformation is not reliable!
+It means that there is high probability that ICP may converge to a local minima !!!
+Started Point to Point ICP
+Final transformation (feature matching * ICP alone)  :
+0.00628124 -0.0599504   0.998182   0.164307
+ 0.0561121    0.99665  0.0595055  -0.149559
+ -0.998405  0.0556355   0.009624  0.0177087
+         0          0          0          1
+*************
+!!! Here we estimate the ICP's covariance of transformation between closely moved point clouds !!! 
+*************
+
+Printing out [x, y, z, a, b, c] =  0.056282    0.00897623    0.0110048    -0.00556128    0.0585961    -0.0479267
+
+**************
+ Successfully Computed d2J_dX2 
+**************
+
+
+Number of Correspondences used for ICP's covariance estimation = 200
+
+
+********************** 
+
+ICP_COV = 
+ 6.08775e-08  4.30224e-09  -5.6127e-09 -1.12043e-08 -2.40106e-08  1.01003e-08
+ 4.30224e-09  7.02212e-08  1.69609e-09 -4.11607e-08  1.57608e-09  1.34353e-08
+ -5.6127e-09  1.69609e-09  7.50133e-08 -1.22786e-08  7.02095e-08  -1.4137e-08
+-1.12043e-08 -4.11607e-08 -1.22786e-08   1.6966e-07 -6.98892e-08  6.18637e-08
+-2.40106e-08  1.57608e-09  7.02095e-08 -6.98892e-08  3.07022e-07 -1.50377e-07
+ 1.01003e-08  1.34353e-08  -1.4137e-08  6.18637e-08 -1.50377e-07  2.59861e-07
+*******************
+
+
+
+Successfully Computed the ICP's Covariance !!!
+
+
+Computational Time for ICP's covariance computation alone (in sec) = 0.008989
+
+ICP_COV Trace = 
+
+9.42655e-07
+
+
+
+
+
+
+
+
+
+
+

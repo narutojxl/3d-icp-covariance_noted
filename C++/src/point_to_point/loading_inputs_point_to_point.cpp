@@ -75,7 +75,7 @@ int main(int argc, char** argv)
     cb.cloud1 = *cloud_in;
     cb.cloud2 = *cloud_out;
 
-    cb.calculate_voxel_grid_keypoints(0.05);
+    cb.calculate_voxel_grid_keypoints(0.05); //这些参数需要根据自己的数据集进行调整
     cb.calculate_normals(0.02);
     cb.calculate_SHOT(0.30);
 
@@ -93,7 +93,7 @@ int main(int argc, char** argv)
 
     pcl::CorrespondencesConstPtr correspond = boost::make_shared< pcl::Correspondences >(corresp);
 
-    pcl::Correspondences corr;
+    pcl::Correspondences corr; 
     pcl::registration::CorrespondenceRejectorSampleConsensus< pcl::PointXYZ > Ransac_based_Rejection;
     Ransac_based_Rejection.setInputSource(cb.cloud1_keypoints.makeShared());
     Ransac_based_Rejection.setInputTarget(cb.cloud2_keypoints.makeShared());
@@ -103,7 +103,8 @@ int main(int argc, char** argv)
     Eigen::Matrix4f ransac_mat = Ransac_based_Rejection.getBestTransformation();
     cout << "RANSAC based Transformation Matrix : \n" << ransac_mat << endl;
 
-    pcl::transformPointCloud(*cloud_in, *cloud_in, ransac_mat);
+    pcl::transformPointCloud(*cloud_in, *cloud_in, ransac_mat); 
+    //用ransac对SHOT基于描述子的匹配进行筛选得到的变换进行筛选, 然后对source point cloud进行初始变换
 
 
     std::cout << "Now a window with the established correspondences between source and target keypoints pops up!" << endl;
@@ -155,7 +156,7 @@ int main(int argc, char** argv)
     // Now do the Point to Point ICP
 
     pcl::PointCloud<pcl::PointXYZ> cld1, cld2;
-    pcl::copyPointCloud(*cloud_in, cld1);
+    pcl::copyPointCloud(*cloud_in, cld1); //此刻的clound_in是已经应用了初始的变换
     pcl::copyPointCloud(*cloud_out,cld2);
 
 
@@ -182,7 +183,7 @@ int main(int argc, char** argv)
 
 
         // rotate/transform data based on this estimated transformation
-        pcl::transformPointCloud(cld1, cld1, transform_eigen);
+        pcl::transformPointCloud(cld1, cld1, transform_eigen); //cld1: 一直在变化
 
 
         // accumulate incremental tf
@@ -214,7 +215,7 @@ int main(int argc, char** argv)
     pcl::PointCloud<pcl::PointXYZ> data_pi; //Put all the pi in this cloud and its size will be equal to number of correspondences
     pcl::PointCloud<pcl::PointXYZ> model_qi;// Put all the qi in this cloud and its size will be equal to number of correspondences
 
-    pcl::copyPointCloud(cld1,data_idx,data_pi);
+    pcl::copyPointCloud(cld1,data_idx,data_pi); //如果是最开始的raw source data呢?
     pcl::copyPointCloud(cld2,model_idx,model_qi);
 
     Eigen::MatrixXd ICP_COV(6,6);
@@ -225,7 +226,7 @@ int main(int argc, char** argv)
     double cpu_time_used;
     start = clock();
 
-    calculate_ICP_COV(data_pi, model_qi, final_transformation, ICP_COV);
+    calculate_ICP_COV(data_pi, model_qi, final_transformation, ICP_COV); //transform如果是ransac_mat * final_transformation呢?
 
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
